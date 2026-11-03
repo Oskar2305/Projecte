@@ -1,0 +1,5 @@
+export const ASSET_KEYS = {
+    BACKGROUND: 'BACKGROUND_KEY',
+    CUERPO: 'CUERPO_KEY',
+    BTN_FLECHA: 'BTN_FLECHA_KEY'
+};

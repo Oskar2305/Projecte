@@ -1,14 +1,11 @@
 import { Scene } from 'phaser';
 
-export class MainMenu extends Scene
-{
-    constructor ()
-    {
+export class MainMenu extends Scene {
+    constructor() {
         super('MainMenu');
     }
 
-    create ()
-    {
+    create() {
         this.add.image(512, 384, 'background');
 
         this.add.image(512, 300, 'logo');
@@ -19,10 +16,12 @@ export class MainMenu extends Scene
             align: 'center'
         }).setOrigin(0.5);
 
+    }
+
+    update() {
         this.input.once('pointerdown', () => {
-
-            this.scene.start('Game');
-
+            this.scene.start('Lobby');
         });
+
     }
 }

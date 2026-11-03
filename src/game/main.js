@@ -4,6 +4,7 @@ import { GameOver } from './scenes/GameOver';
 import { MainMenu } from './scenes/MainMenu';
 import { Preloader } from './scenes/Preloader';
 import { AUTO, Game, Scale } from 'phaser';
+import { Lobby } from './scenes/Lobby.js';
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -12,13 +13,14 @@ const config = {
     width: 1024,
     height: 768,
     parent: 'game-container',
-    backgroundColor: '#028af8',
+    backgroundColor: '#040708',
     scale: {
         mode: Scale.FIT,
         autoCenter: Scale.CENTER_BOTH
     },
     scene: [
         Boot,
+        Lobby,
         Preloader,
         MainMenu,
         MainGame,
@@ -26,9 +28,9 @@ const config = {
     ]
 };
 
-const StartGame = (parent) => {
+const StartGame = (divParent) => {
 
-    return new Game({ ...config, parent });
+    return new Game({ ...config, divParent });
 
 }
 
