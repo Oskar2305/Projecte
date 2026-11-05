@@ -18,7 +18,7 @@ export class Lobby extends Phaser.Scene {
         this.cameraManager = new CameraManager(this);
 
         this.cameraManager.setup({
-            zoom: 2,
+            zoom: 1,
             backgroundColor: '#87CEEB',
             bounds: {
                 x: this.width / 2,
