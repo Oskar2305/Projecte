@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
-import { ASSET_KEYS } from '../assets.js';
+import { LOBBY_ASSETS, ASSET_KEYS, CHARACTER_ASSETS } from '../assets.js';
 import CameraManager from '../managers/CameraManager.js';
+import { Character } from '../Character.js';
 
 export class Lobby extends Phaser.Scene {
     constructor() {
@@ -9,8 +10,13 @@ export class Lobby extends Phaser.Scene {
     }
 
     preload() {
+        LOBBY_ASSETS.forEach((asset) => {
+            this.load.image(asset.assetKey, asset.path);           
+        });
 
-        this.load.image(ASSET_KEYS.BACKGROUND, "/assets/Cesped.jpeg");
+        CHARACTER_ASSETS.forEach((asset) => {
+            this.load.image(asset.assetKey, asset.path);
+        });
     }
 
     create() {
@@ -18,7 +24,7 @@ export class Lobby extends Phaser.Scene {
         this.cameraManager = new CameraManager(this);
 
         this.cameraManager.setup({
-            zoom: 2,
+            zoom: 1,
             backgroundColor: '#87CEEB',
             bounds: {
                 x: this.width / 2,
@@ -35,6 +41,10 @@ export class Lobby extends Phaser.Scene {
 
         let fondoCesped = this.add.image(width / 2, height / 2, ASSET_KEYS.BACKGROUND);
         fondoCesped.setDisplaySize(width, height);
+
+        this.player = new Character(this, width / 2, height / 2, ASSET_KEYS.CHARACTER);
+        this.player.setDisplaySize(50, 100);
+
     }
 
 }
