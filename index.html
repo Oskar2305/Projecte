@@ -1,26 +1,64 @@
 <!doctype html>
-<html lang="en">
+<html lang="ca">
 
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css">
-    <title>Phaser - Template</title>
+    <script src="script.js" defer></script>
+    <title>HOPE QUEST</title>
 </head>
 
 <body>
-    <header>
-
+    <header id="header">
+        <img class="logo" src="public/assets/placeholder.png">
+        <p>HOPE QUEST</p>
     </header>
 
-    <div id="app">
-        <div id="game-container"></div>
-    </div>
+    <main>
+        <section id="menu">
+            <div id="menu_options">
+                <input class="active" type="button" id="btn_inici" value="INICI">
+                <input type="button" id="btn_perfil" value="PERFIL">
+                <input type="button" id="btn_ranking" value="RANKING">
+                <input type="button" id="btn_informació" value="INFORMACIÓ">
+                <input type="button" id="btn_crédits" value="CRÉDITS">
+            </div>
 
-    <footer>
+            <div id="menu_login">
+                <p>Usuari</p>
+                <input id="inp_user" type="text" placeholder="Introdueix usuari...">
 
-    </footer>
+                <p>Contrasenya</p>
+                <input id="inp_passwd" type="password" placeholder="Introdueix contrasenya...">
+
+                <input type="button" id="btn_login" value="Iniciar sessió">
+                <input type="button" id="btn_signin" value="Crear compte">
+                <p id="message">Aquest usuari ja existeix</p>
+            </div>
+        </section>
+
+        <div id="container">
+            <div id="content">
+                <div id="app">
+                    <div id="game_container"></div>
+                </div>
+
+                <div id="ranking">
+                    <div id="ranking_info">
+                        <p id="info_ranking">#</p>
+                        <p id="info_username">Usuari</p>
+                        <p id="info_points">Pts</p>
+                    </div>
+                </div>
+            </div>
+
+            <footer id="footer">
+                <p>Esto es el footer</p>
+            </footer>
+        </div>
+    </main>
 
     <script type="module" src="src/main.js"></script>
 </body>
