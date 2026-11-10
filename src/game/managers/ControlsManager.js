@@ -1,4 +1,5 @@
-class ControlsManager {
+import * as Phaser from "phaser";
+export class ControlsManager {
     constructor(scene) {
         this.scene = scene;
         // Creamos las teclas flechas
@@ -15,11 +16,13 @@ class ControlsManager {
 
     getMovement() {
         return {
-            left: this.cursors.left.isdown || this.wasd.left.isdown,
-            right: this.cursors.right.isdown || this.wasd.right.isdown,
-            up: this.cursors.up.isdown || this.wasd.up.isdown,
-            down: this.cursors.down.isdown || this.wasd.down.isdown
+            left: this.cursors.left.isDown || this.wasd.left.isDown,
+            right: this.cursors.right.isDown || this.wasd.right.isDown,
+            up: this.cursors.up.isDown || this.wasd.up.isDown,
+            down: this.cursors.down.isDown || this.wasd.down.isDown
         };
     }
 
 }
+
+export default ControlsManager;
