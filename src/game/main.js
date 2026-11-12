@@ -8,6 +8,8 @@ import { Lobby } from './scenes/Lobby.js';
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
+
+
 const config = {
     type: AUTO,
     width: 1024,
@@ -21,8 +23,8 @@ const config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 0 }, 
-            debug: false      
+            gravity: { y: 0 },
+            debug: true
         }
     },
     scene: [
