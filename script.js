@@ -96,3 +96,26 @@ const SINGIN_BUTTON = document.getElementById('btn_signin');
 SINGIN_BUTTON.addEventListener("click", callCreateAccount);
 
 buildRanking(users);
+
+const menuPanels = {
+    btn_inici: 'content',
+    btn_perfil: 'perfil',
+    btn_ranking: 'ranking_page',
+    btn_informacio: 'informacio',
+    btn_credits: 'credits'
+};
+
+function showPanel(buttonId) {
+    for (const [btnId, panelId] of Object.entries(menuPanels)) {
+        document.getElementById(btnId).classList.remove('active');
+        document.getElementById(panelId).classList.remove('active');
+    }
+
+    document.getElementById(buttonId).classList.add('active');
+    document.getElementById(menuPanels[buttonId]).classList.add('active');
+}
+for (const buttonId of Object.keys(menuPanels)) {
+    document.getElementById(buttonId).addEventListener('click', () => {
+        showPanel(buttonId);
+    });
+}
