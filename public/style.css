@@ -52,8 +52,7 @@ main {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-
-
+        
         #menu_options {
             display: flex;
             flex-direction: column;
@@ -131,6 +130,14 @@ main {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         grid-template-rows: 1fr auto;
+
+        .panel {
+            grid-area: ct;
+        }
+
+        .panel:not(.active) {
+            display: none !important;
+        }
 
         #content {
             grid-area: ct;
@@ -257,7 +264,11 @@ main {
 
         #footer {
             grid-area: ft;
-            text-align: center;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            font-size: 17px;
         }
 
         grid-template-areas: "ct ct ct ct ct ct ct ct ct ct ct ct"
