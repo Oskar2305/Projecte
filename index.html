@@ -19,11 +19,12 @@
     <main>
         <section id="menu">
             <div id="menu_options">
+                <!-- CANVI: ids sense accents -->
                 <input class="active" type="button" id="btn_inici" value="INICI">
                 <input type="button" id="btn_perfil" value="PERFIL">
                 <input type="button" id="btn_ranking" value="RANKING">
-                <input type="button" id="btn_informació" value="INFORMACIÓ">
-                <input type="button" id="btn_crédits" value="CRÉDITS">
+                <input type="button" id="btn_informacio" value="INFORMACIÓ">
+                <input type="button" id="btn_credits" value="CRÉDITS">
             </div>
 
             <div id="menu_login">
@@ -40,7 +41,7 @@
         </section>
 
         <div id="container">
-            <div id="content">
+            <div id="content" class="panel active">
                 <div id="app">
                     <div id="game_container"></div>
                 </div>
@@ -54,8 +55,20 @@
                 </div>
             </div>
 
+            <div id="perfil" class="panel">
+            </div>
+
+            <div id="ranking_page" class="panel">
+            </div>
+
+            <div id="informacio" class="panel">
+            </div>
+
+            <div id="credits" class="panel">
+            </div>
+
             <footer id="footer">
-                <p>Esto es el footer</p>
+                <p>© 2026 Hope Quest™</p>
             </footer>
         </div>
     </main>
