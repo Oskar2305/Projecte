@@ -1,18 +1,280 @@
-#pantallaMain {
-    margin: 0;
-    padding: 0;
-    color: rgba(255, 255, 255, 0.87);
-
-    display: flex;
-    flex-wrap: wrap;
+* {
+    font-family: VRC;
+    user-select: none;
 }
 
+@font-face {
+    font-family: VRC;
+    src: url(assets/fonts/VCR_OSD_MONO_1.001.ttf);
+}
 
-#app {
-    width: 50%;
-    height: 100vh;
-    overflow: hidden;
+body {
+    margin: 0;
+    padding: 0;
+    color: black;
+    background-color: #349655;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+}
+
+#header,
+#footer {
+    display: flex;
     align-items: center;
+
+    background-color: #336133;
+
+    .logo {
+        height: 45px;
+    }
+}
+
+header {
+    padding: 9px;
+
+    p {
+        margin: 0px 0px 0px 13.5px;
+        font-size: 45px;
+        color: white;
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    flex-grow: 1;
+
+    #menu {
+        grid-area: mn;
+        background-color: #4BB69B;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        #menu_options {
+            display: flex;
+            flex-direction: column;
+
+            input[type="button"] {
+                color: white;
+                font-size: 31.5px;
+                background-color: transparent;
+
+                border-radius: 0px;
+                border: 0px;
+                border-bottom: 1.8px solid #74C6CB;
+
+                padding: 4.5px;
+
+                &:hover {
+                    transition: all 0.2s ease;
+                    background-color: #8CB9D5;
+                }
+            }
+
+            input[type="button"].active {
+                border-left: 7.2px solid #B87333;
+            }
+        }
+
+        #menu_login {
+            background-color: #429f88;
+            padding: 9px;
+            text-align: center;
+            border-top: 1.8px solid #74C6CB;
+            color: white;
+
+            p {
+                font-size: 22.5px;
+                margin: 0px 0px 9px 0px;
+            }
+
+            input[type="text"],
+            input[type="password"] {
+                width: 90%;
+                height: 22.5px;
+                margin-bottom: 13.5px;
+                font-size: 18px;
+
+                &::placeholder {
+                    font-size: 13.5px;
+                }
+            }
+
+            input[type="button"] {
+                padding: 9px;
+                background-color: #74C6CB;
+                border: 2.7px solid black;
+                font-size: 18px;
+                margin-bottom: 9px;
+                width: 85%;
+
+                &:hover {
+                    transition: all 0.1s ease;
+                    background-color: #8CB9D5;
+                }
+            }
+
+            #message {
+                color: red;
+                font-size: 18px;
+                display: none;
+            }
+        }
+    }
+
+    #container {
+        grid-area: cn;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: 1fr auto;
+
+        .panel {
+            grid-area: ct;
+        }
+
+        .panel:not(.active) {
+            display: none !important;
+        }
+
+        #content {
+            grid-area: ct;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: 1fr auto;
+
+            #app {
+                display: flex;
+                justify-content: center;
+                grid-area: ap;
+
+                #game_container {
+                    width: 90%;
+
+                    canvas {
+                        border: 1.8px solid black;
+                    }
+                }
+            }
+
+            #ranking {
+                grid-area: rn;
+                border: 0.9px solid black;
+                margin: 36px 22.5px 36px 0px;
+                background-color: rgb(218, 7, 106);
+                height: 70vh;
+                overflow: scroll;
+
+                .ranking_user {
+                    display: grid;
+                    grid-template-columns: repeat(12, 1fr);
+                    align-items: center;
+                    background-color: sienna;
+
+                    padding: 9px;
+                    border-bottom: 0.9px solid black;
+
+                    img {
+                        width: 36px;
+                        border-radius: 50%;
+                    }
+
+                    .position {
+                        grid-area: ps;
+
+                        p {
+                            margin: 0;
+                            font-size: 22.5px;
+                        }
+                    }
+
+                    .picture {
+                        grid-area: pc;
+                    }
+
+                    .pname {
+                        grid-area: pn;
+
+                        p {
+                            margin: 0px 0px 0px 9px;
+                            font-size: 18px;
+                        }
+                    }
+
+                    .points {
+                        grid-area: pt;
+
+                        p {
+                            font-size: 18px;
+                            margin: 0px;
+                        }
+                    }
+
+                    grid-template-areas: "ps ps pc pn pn pn pn pn pn pn pt pt";
+                }
+
+                .ranking_user.first {
+                    background-color: gold;
+                }
+
+                .ranking_user.second {
+                    background-color: silver;
+                }
+
+                .ranking_user.third {
+                    background-color: #B87333;
+                }
+
+                #ranking_info {
+                    display: grid;
+                    grid-template-columns: repeat(12, 1fr);
+                    border-bottom: 0.9px solid black;
+                    background-color: chocolate;
+
+                    text-align: center;
+                    font-size: 18px;
+
+                    p {
+                        margin: 4.5px 0px 4.5px 0px;
+                    }
+
+                    #info_ranking {
+                        grid-area: ir;
+                    }
+
+                    #info_username {
+                        grid-area: iu;
+                    }
+
+                    #info_points {
+                        grid-area: ip;
+                    }
+
+                    grid-template-areas: "ir ir iu iu iu iu iu iu iu ip ip ip";
+
+                    position: sticky;
+                    top: 0;
+                }
+            }
+
+            grid-template-areas: "ap ap ap ap ap ap ap ap ap rn rn rn";
+        }
+
+        #footer {
+            grid-area: ft;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            font-size: 17px;
+        }
+
+        grid-template-areas: "ct ct ct ct ct ct ct ct ct ct ct ct"
+        "ct ct ct ct ct ct ct ct ct ct ct ct"
+        "ft ft ft ft ft ft ft ft ft ft ft ft";
+    }
+
+    grid-template-areas: "mn mn cn cn cn cn cn cn cn cn cn cn";
 }
