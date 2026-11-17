@@ -58,11 +58,11 @@ async function createAccount(username, pass) {
         MESSAGE.textContent = errorMessages.already_exists;
         MESSAGE.style.display = "block";
     } else {
-        await saveUser(username, pass);
+        let passHash = await hashPassword(pass);
+        await saveUser(username, passHash);
         users = await readUsers();
         buildRanking(users);
         MESSAGE.style.display = "none";
-        // Conseguir que se actualice el ranking cuando se añade un usuario.
     }
 }
 
@@ -82,6 +82,22 @@ function callCreateAccount() {
 
     createAccount(user, pass);
 }
+
+async function hashPassword(password) {
+    // Convierte el texto a bytes
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+
+    // Genera el hash SHA-256
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    // Convierte los bytes a texto hexadecimal
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return hashHex;
+}
+
 
 const LOGIN_BUTTON = document.getElementById('btn_login');
 const SINGIN_BUTTON = document.getElementById('btn_signin');
