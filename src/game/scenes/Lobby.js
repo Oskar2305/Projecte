@@ -21,8 +21,16 @@ export class Lobby extends Phaser.Scene {
     }
 
     create() {
+        this.input.keyboard.on('keydown-ESC', () => {
+            this.scene.pause();
+            this.scene.launch('PauseMenu', {
+                previousScene: this.scene.key
+            });
+        });
+
 
         this.obstacles = this.physics.add.staticGroup();
+        this.depthObjects = [];
         // Configurar la cámara
         const TILE_SIZE = 32;
         const mapaColumnas = 20; // Cuántas casillas de ancho quieres que tenga tu mapa
@@ -42,7 +50,7 @@ export class Lobby extends Phaser.Scene {
         this.scale.resize(widthBackground, heightBackground);
 
         this.cameraManager.setup({
-            zoom: 2,
+            zoom: 1,
             backgroundColor: '#87CEEB',
             bounds: {
                 x: 0,
@@ -65,23 +73,50 @@ export class Lobby extends Phaser.Scene {
             widthBackground / 2,
             heightBackground / 2,
             ASSET_KEYS.CHARACTER,
-            this.controlsManager);
-        this.player.setDisplaySize(TILE_SIZE * 0.5, TILE_SIZE * 1);
-
-        /** @type {Phaser.Physics.Arcade.Sprite} */ //
-        let rockObstacle = this.obstacles.create(TILE_SIZE * 5, TILE_SIZE * 3, ASSET_KEYS.ROCK)
+            this.controlsManager,
+            TILE_SIZE);
+        //this.player.setDisplaySize(TILE_SIZE * 0.5, TILE_SIZE * 1);
         this.cameraManager.follow(this.player);
 
-        rockObstacle.setDisplaySize(TILE_SIZE, TILE_SIZE);
+        //this.player.body.setSize(18, 16, false);
+        //this.player.body.setOffset(7, 48);
+
+        /** @type {Phaser.Physics.Arcade.Sprite} */
+        let rockObstacle = this.obstacles.create(TILE_SIZE * 8, TILE_SIZE * 5, ASSET_KEYS.ROCK);
+
+        rockObstacle.setOrigin(0.5, 1);
+
+        // 1. Primero escalamos el dibujo visual
+        rockObstacle.setDisplaySize(72, 72);
+
+        // 2. Sincronizamos el cuerpo estático con su nueva posición en pantalla
         rockObstacle.refreshBody();
+
+        // 3. ¡EL ARREGLO! Ahora modificamos directamente el 'body' en píxeles reales de pantalla
+        // (Ancho: 32px, Alto: 24px, y el tercer parámetro 'false' evita que Phaser lo recentre solo)
+        rockObstacle.body.setSize(75, 40, false);
+
+        // 4. Bajamos la caja de colisión a los pies de la roca
+        rockObstacle.body.setOffset(-2, 30);
+
+        //rockObstacle.setDisplaySize(TILE_SIZE, TILE_SIZE);
+        //rockObstacle.refreshBody();
 
         this.physics.add.collider(this.player, this.obstacles);
 
-
+        this.depthObjects.push(rockObstacle);
     }
     update() {
         this.player.update();
+        makeDepths(this.player, this.depthObjects);
     }
 
+}
+
+function makeDepths(player, objects) {
+    objects.forEach(element => {
+        element.setDepth(element.y);
+    });
+    player.setDepth(player.body.bottom);
 }
 

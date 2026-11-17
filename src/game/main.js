@@ -5,6 +5,7 @@ import { MainMenu } from './scenes/MainMenu';
 import { Preloader } from './scenes/Preloader';
 import { AUTO, Game, Scale } from 'phaser';
 import { Lobby } from './scenes/Lobby.js';
+import { PauseMenu } from './scenes/PauseMenu.js';
 
 //  Find out more information about the Game Config at:
 //  https://docs.phaser.io/api-documentation/typedef/types-core#gameconfig
@@ -14,7 +15,7 @@ const config = {
     type: AUTO,
     width: 1024,
     height: 768,
-    parent: 'game-container',
+    parent: 'game_container',
     backgroundColor: '#040708',
     scale: {
         mode: Scale.FIT,
@@ -33,7 +34,8 @@ const config = {
         Preloader,
         MainMenu,
         MainGame,
-        GameOver
+        GameOver,
+        PauseMenu
     ]
 };
 
