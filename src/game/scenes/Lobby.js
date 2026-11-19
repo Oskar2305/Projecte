@@ -3,6 +3,7 @@ import { LOBBY_ASSETS, ASSET_KEYS, CHARACTER_ASSETS } from '../assets.js';
 import CameraManager from '../managers/CameraManager.js';
 import { Character } from '../Character.js';
 import { ControlsManager } from '../managers/ControlsManager.js'
+import windowManager from '../managers/windowManager.js';
 
 export class Lobby extends Phaser.Scene {
     constructor() {
@@ -22,12 +23,12 @@ export class Lobby extends Phaser.Scene {
 
     create() {
         this.input.keyboard.on('keydown-ESC', () => {
-            this.scene.pause();
-            this.scene.launch('PauseMenu', {
-                previousScene: this.scene.key
-            });
+            this.openPauseMenu();
         });
-
+        this.windowManager = new windowManager(this);
+        this.windowManager.onClickOutsideCanvas(() => {
+            this.openPauseMenu();
+        });
 
         this.obstacles = this.physics.add.staticGroup();
         this.depthObjects = [];
@@ -50,7 +51,7 @@ export class Lobby extends Phaser.Scene {
         this.scale.resize(widthBackground, heightBackground);
 
         this.cameraManager.setup({
-            zoom: 1,
+            zoom: 2,
             backgroundColor: '#87CEEB',
             bounds: {
                 x: 0,
@@ -111,6 +112,15 @@ export class Lobby extends Phaser.Scene {
         makeDepths(this.player, this.depthObjects);
     }
 
+    openPauseMenu() {
+        if (!this.scene.isActive('Lobby')) return;
+
+        this.scene.pause();
+
+        this.scene.launch('PauseMenu', {
+            previousScene: this.scene.key
+        });
+    }
 }
 
 function makeDepths(player, objects) {
