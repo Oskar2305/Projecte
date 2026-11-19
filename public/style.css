@@ -122,6 +122,28 @@ main {
                 font-size: 18px;
                 display: none;
             }
+
+            .screen:not(.active) {
+                display: none;
+            }
+
+            #session_screen {
+                #session_picture {
+                    width: 90px;
+                    height: 90px;
+                    border-radius: 50%;
+                    margin-bottom: 9px;
+                }
+
+                #session_name {
+                    font-size: 27px;
+                }
+
+                #session_points {
+                    font-size: 18px;
+                    margin-bottom: 13.5px;
+                }
+            }
         }
     }
 
@@ -283,6 +305,10 @@ main {
                     }
 
                     #profile_about {
+                        div {
+                            display: flex;
+                        }
+
                         #profile_name {
                             font-size: 70px;
                             color: white;
@@ -291,10 +317,13 @@ main {
 
                         #profile_points {
                             color: white;
+                            font-size: 50px;
+                            margin: 0px;
                         }
 
                         #profile_rank {
                             color: white;
+                            margin: 0px;
 
                             &.first {
                                 color: gold;
