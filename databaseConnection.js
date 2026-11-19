@@ -18,7 +18,7 @@ export async function readUsers() {
     }
 
     let users = [
-        { picture: "public/assets/pfp.jpeg", pname: "WDG", points: 666 },
+        { picture: "pfp.jpeg", pname: "WDG", points: 666 },
     ];
 
     accounts.forEach(account => {
@@ -37,7 +37,7 @@ export async function saveUser(user, pass) {
                 nomCompte: user,
                 password: pass,
                 punts: 0,
-                fotoPerfil: "public/assets/pfp.jpeg"
+                fotoPerfil: "pfp.jpeg"
             }
         ]);
 
@@ -47,4 +47,20 @@ export async function saveUser(user, pass) {
     }
 
     return;
+}
+
+export async function checkLogin(user, pass) {
+    const { data, error } = await supabase
+        .from('Compte')
+        .select('nomCompte')
+        .eq('nomCompte', user)
+        .eq('password', pass)
+        .maybeSingle();
+
+    if (error) {
+        console.error('Error comprobando el login.');
+        return false;
+    }
+
+    return data !== null;
 }
