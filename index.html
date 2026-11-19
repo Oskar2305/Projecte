@@ -6,7 +6,7 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/style.css">
-    <script src="script.js" defer></script>
+    <script src="script.js" type="module" defer></script>
     <title>HOPE QUEST</title>
 </head>
 
@@ -19,7 +19,6 @@
     <main>
         <section id="menu">
             <div id="menu_options">
-                <!-- CANVI: ids sense accents -->
                 <input class="active" type="button" id="btn_inici" value="INICI">
                 <input type="button" id="btn_perfil" value="PERFIL">
                 <input type="button" id="btn_ranking" value="RANKING">
@@ -28,15 +27,25 @@
             </div>
 
             <div id="menu_login">
-                <p>Usuari</p>
-                <input id="inp_user" type="text" placeholder="Introdueix usuari...">
+                <div id="login_screen" class="screen active">
+                    <p>Usuari</p>
+                    <input id="inp_user" type="text" placeholder="Introdueix usuari...">
 
-                <p>Contrasenya</p>
-                <input id="inp_passwd" type="password" placeholder="Introdueix contrasenya...">
+                    <p>Contrasenya</p>
+                    <input id="inp_passwd" type="password" placeholder="Introdueix contrasenya...">
 
-                <input type="button" id="btn_login" value="Iniciar sessió">
-                <input type="button" id="btn_signin" value="Crear compte">
-                <p id="message">Aquest usuari ja existeix</p>
+                    <input type="button" id="btn_login" value="Iniciar sessió">
+                    <input type="button" id="btn_signin" value="Crear compte">
+                    <p id="message">Aquest usuari ja existeix</p>
+                </div>
+
+                <div id="session_screen" class="screen">
+                    <img id="session_picture" src="public/assets/profile_pictures/pfp.jpeg">
+                    <p id="session_name">playerName</p>
+                    <p id="session_points">000 pts</p>
+
+                    <input type="button" id="btn_logout" value="Tancar sessió">
+                </div>
             </div>
         </section>
 
@@ -62,8 +71,10 @@
 
                         <div id="profile_about">
                             <p id="profile_name">playerName</p>
-                            <p id="profile_points">000 pts</p>
-                            <p id="profile_rank" class="third">Rank #1</p>
+                            <div>
+                                <p id="profile_points">000 pts</p>
+                                <p id="profile_rank" class="first">(Rank #1)</p>
+                            </div>
                         </div>
                     </div>
 
@@ -83,10 +94,6 @@
                             <img id="medal_2" src="public/assets/medals/m2_locked.png">
                             <img id="medal_3" src="public/assets/medals/m3_locked.png">
                         </div>
-                    </div>
-
-                    <div id="profile_progress">
-                        <p>hola esto será una barra de progreso en base a los logros y medallas para el platino</p>
                     </div>
                 </div>
             </div>
