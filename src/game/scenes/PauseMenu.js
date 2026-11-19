@@ -45,8 +45,9 @@ export class PauseMenu extends Phaser.Scene {
             this.resumePreviousScene();
         });
     }
-
+    //Quitamos el blur, paramos la escena actual (La pauseMenu) y reanudamos la anterior que llamó a PauseMenu
     resumePreviousScene() {
+        document.activeElement.blur();
         this.scene.stop();
         this.scene.resume(this.previousScene);
     }
